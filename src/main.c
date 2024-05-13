@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:25:40 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/04/03 20:31:54 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/05/09 10:56:19 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int check_arg_content(char *args)
     return 0;
 }
 
-int check_args(char **argv)
+int check_args(char **argv, int argc)
 {
     if(check_philo_num(argv[PHILO_I]) == 1)
         return error_msg("philosophers number");
@@ -50,7 +50,7 @@ int check_args(char **argv)
         return error_msg("time to eat");
     if(check_arg_content(argv[SLEEP_I]) == 1)
         return error_msg("time to sleep");
-    if(check_arg_content(argv[MUST_EAT_I]) == 1)
+    if(argc == 6 && check_arg_content(argv[MUST_EAT_I]) == 1)
         return error_msg("must eat num");
 
     return 0;
@@ -59,9 +59,13 @@ int check_args(char **argv)
 
 int main(int argc , char **argv)
 {
+    t_data data;
     char err_msg;
     if(argc!=5 && argc!=6)
         return  error_msg("args");
-    if(check_args(argv) == 1)
+    if(check_args(argv,argc) == 1)
         return 1;
+    init(&data,argv,argc);
+    printf("philo_num: %d\n",data.time_die);
+    // pthread_create
 }
