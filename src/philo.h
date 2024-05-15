@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:26:03 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/05/09 10:39:23 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/05/14 19:39:41 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #define SLEEP_I 4
 #define MUST_EAT_I 5
 #define MAX_PHILO_NUM 200
+
 typedef struct s_philo
 {
 	struct s_data	*data;
@@ -57,4 +58,5 @@ typedef struct s_data
 }	t_data;
 int	ft_atoi(const char *str);
 void init(t_data *data, char **argv, int argc);
+
 #endif
