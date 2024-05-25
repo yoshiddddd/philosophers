@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:25:49 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/05/08 22:27:22 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/05/16 19:06:14 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void init_philos(t_data *data)
         data->philos[i].eat_num = 0;
         data->philos[i].status = 0;
         data->philos[i].eating = 0;
+        data->philos[i].last_eat = get_current_time();
         data->philos[i].time_die = data->start_time + data->time_die;
         data->philos[i].time_eat = data->time_eat;
         data->philos[i].time_sleep = data->time_sleep;
