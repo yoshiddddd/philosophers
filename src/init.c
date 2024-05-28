@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:25:49 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/05/28 13:27:09 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/05/28 13:52:13 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void init_philos(t_data *data)
     int i;
 
     i = 0;
+    // printf("philo_num : %d\n", data->philo_num);
     data->philos = malloc(sizeof(t_philo) * data->philo_num);
     while (i < data->philo_num)
     {
@@ -52,14 +53,15 @@ void init_philos(t_data *data)
         data->philos[i].status = 0;
         data->philos[i].eating = 0;
         data->philos[i].last_eat = get_current_time();
-        data->philos[i].start_time = get_current_time();
         data->philos[i].time_die = data->time_die;
+        data->philos[i].start_time = get_current_time();
         data->philos[i].time_eat = data->time_eat;
         data->philos[i].time_sleep = data->time_sleep;
         data->philos[i].data = data;
         data->philos[i].r_fork = &data->forks[i];
         data->philos[i].l_fork = &data->forks[(i + 1) % data->philo_num];
-        pthread_mutex_init(data->philos[i].lock, NULL);
+        pthread_mutex_init(&data->philos[i].lock, NULL);
+                printf("hello\n");
         i++;
     }
 
@@ -68,6 +70,7 @@ void init_philos(t_data *data)
 void init(t_data *data, char **argv, int argc)
 {
     init_data(data, argv, argc);
+
     init_locks_and_forks(data);
     init_philos(data);
 }

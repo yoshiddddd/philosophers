@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:41:03 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/05/28 13:27:58 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/05/28 13:52:23 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void destroy_mutex(char *str,t_data *data)
     pthread_mutex_destroy(&data->write);
     while (i < data->philo_num)
     {
-        pthread_mutex_destroy(data->philos[i].lock);
+        pthread_mutex_destroy(&data->philos[i].lock);
         pthread_mutex_destroy(&data->forks[i]);
         i++;
     }

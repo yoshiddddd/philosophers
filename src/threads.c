@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 16:14:57 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/05/28 13:28:13 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/05/28 13:51:47 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ size_t	get_current_time(void)
 int check_philo_status(t_philo *philo)
 {
     uint64_t elapsed_time;
-   pthread_mutex_lock(philo->lock);
+   pthread_mutex_lock(&philo->lock);
     elapsed_time = get_current_time() - philo->last_eat;
     if(elapsed_time > philo->data->time_die)
     {
         philo->status = DIE_I;
-        pthread_mutex_unlock(philo->lock);
+        pthread_mutex_unlock(&philo->lock);
         return 1;
     }
     return 0;
