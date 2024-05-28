@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:26:03 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/05/28 13:51:09 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/05/28 18:03:01 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_philo
 	int				eat_num;
 	int				status;
 	int				eating;
-    int            last_eat;
+    size_t            last_eat;
 	uint64_t		time_die;
 	uint64_t		time_eat;
 	u_int64_t		start_time;

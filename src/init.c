@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:25:49 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/05/28 13:52:13 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/05/28 17:43:13 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void init_philos(t_data *data)
         data->philos[i].r_fork = &data->forks[i];
         data->philos[i].l_fork = &data->forks[(i + 1) % data->philo_num];
         pthread_mutex_init(&data->philos[i].lock, NULL);
-                printf("hello\n");
         i++;
     }
 

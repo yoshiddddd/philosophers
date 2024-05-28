@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 16:14:57 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/05/28 13:51:47 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/05/28 18:11:25 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int check_philo_status(t_philo *philo)
     uint64_t elapsed_time;
    pthread_mutex_lock(&philo->lock);
     elapsed_time = get_current_time() - philo->last_eat;
-    if(elapsed_time > philo->data->time_die)
+    // printf("elapsed_time : %zu\n", philo->last_eat);
+    // printf("time_die : %llu\n", philo->data->time_die);
+    if(elapsed_time >= philo->data->time_die && philo->eating == 0)
     {
         philo->status = DIE_I;
         pthread_mutex_unlock(&philo->lock);
@@ -116,9 +118,10 @@ int start_threads(t_data *data)
 
     i = 0;
     if(pthread_create(&observer, NULL, observer_thread, (void *)data)!=0)
-    //destroy all mutexes
+        destroy_mutex("observer thread creation", data);    
     while(i < data->philo_num)
     {
+        printf("philo %d\n", data->philos[i].id);
         if(pthread_create(&data->philos[i].t1, NULL, &routine, (void *)&data->philos[i])!=0)
         {
             //destroy all mutexes
