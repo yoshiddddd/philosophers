@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:26:03 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/05/28 18:03:01 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/05/30 15:02:27 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@ typedef struct s_philo
 	int				eat_num;
 	int				status;
 	int				eating;
+    int             *is_dead;
     size_t            last_eat;
 	uint64_t		time_die;
 	uint64_t		time_eat;
 	u_int64_t		start_time;
 	uint64_t		time_sleep;
     pthread_mutex_t *dead_lock;
+    pthread_mutex_t	write;
 	pthread_mutex_t	lock;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;

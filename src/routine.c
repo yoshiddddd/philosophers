@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 13:30:55 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/05/28 13:52:02 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/05/30 14:23:05 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void sleep_now(t_philo *philo)
 void eat(t_philo *philo)
 {
     pthread_mutex_lock(philo->r_fork);
-    printf("has taken a fork\n");//ここにタイムスタンプなどを入れる
+    printf("NO : %d has taken a fork\n",philo->id);//ここにタイムスタンプなどを入れる
     pthread_mutex_lock(philo->l_fork);
-    printf("has taken a fork\n");//ここにタイムスタンプなどを入れる
+    printf("NO : %d has taken a fork\n",philo->id);//ここにタイムスタンプなどを入れる
     philo->eating = 1;
-    // printf()
+    printf("NO : %d is eating\n",philo->id);//ここにタイムスタンプなどを入れる
     pthread_mutex_lock(&philo->lock);
     philo->last_eat = get_current_time();
     philo->eat_num+=1;
