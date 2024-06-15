@@ -6,7 +6,7 @@
 #    By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/28 13:10:54 by yoshidakazu       #+#    #+#              #
-#    Updated: 2024/05/28 13:15:03 by yoshidakazu      ###   ########.fr        #
+#    Updated: 2024/06/12 22:09:00 by yoshidakazu      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,11 @@ SRC = main.c routine.c init.c threads.c ft_atoi.c  destroy_mutex.c
 
 MANPATH = $(addprefix ./src/, $(SRC))
 
-FLAGS = -Wall -Wextra -Werror -O3 -pthread
+FLAGS = -O3 -pthread -fsanitize=address
+# -Wall -Wextra -Werror 
+
+
+
 
 HEADER = ./src/philo.h
 

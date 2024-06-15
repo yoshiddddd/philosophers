@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:25:40 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/05/28 13:49:00 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/15 11:16:38 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,19 @@ int check_args(char **argv, int argc)
 int main(int argc , char **argv)
 {
     t_data data;
+    t_philo philos[200];
+    pthread_mutex_t	forks[200];
     // char err_msg;
     if(argc!=5 && argc!=6)
         return  error_msg("args");
     if(check_args(argv,argc) == 1)
         return 1;
-    init(&data,argv,argc);
-    start_threads(&data);
-    // printf("philo_num: %d\n",data.time_die);
-    destroy_mutex("destroy mutex", &data);
+    init_data_forks(&data,philos,forks,ft_atoi(argv[PHILO_I]));
+    init_philos(&data,philos, forks, argv);
+    
+    // start_threads(philos);
+    printf("philo_num: %d\n",philos->time_sleep);
+    return 1;
+    // destroy_mutex("destroy mutex", &data);
     // pthread_create
 }

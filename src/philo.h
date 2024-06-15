@@ -6,16 +6,16 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:26:03 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/05/30 15:02:27 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/15 11:00:12 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+#include <stdio.h>
 #include <limits.h>
 #include <unistd.h>
-#include <stdio.h>
 #include <pthread.h>
 # include <sys/time.h>
 #include <stdlib.h>
@@ -35,14 +35,15 @@ typedef struct s_philo
 	int				status;
 	int				eating;
     int             *is_dead;
+	int				meals_n;
     size_t            last_eat;
 	uint64_t		time_die;
 	uint64_t		time_eat;
 	u_int64_t		start_time;
 	uint64_t		time_sleep;
     pthread_mutex_t *dead_lock;
-    pthread_mutex_t	write;
-	pthread_mutex_t	lock;
+    pthread_mutex_t	*write;
+	pthread_mutex_t	*meal_lock;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 }	t_philo;
@@ -50,7 +51,6 @@ typedef struct s_data
 {
 	pthread_t		*tid;
 	int				philo_num;
-	int				meals_n;
     int             count_eat;
 	int				is_dead;
 	int				finished;
@@ -59,11 +59,14 @@ typedef struct s_data
 	uint64_t		time_eat;
 	uint64_t		time_sleep;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	lock;
+    pthread_mutex_t	dead_lock;
+	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	write;
 }	t_data;
 int	ft_atoi(const char *str);
-void init(t_data *data, char **argv, int argc);
+void init_philos(t_data *data,t_philo *philos, pthread_mutex_t *forks,
+		char **argv);
+void init_data_forks(t_data *data, t_philo *philo,pthread_mutex_t *forks, int philo_num);
 void destroy_mutex(char *str,t_data *data);
 int start_threads(t_data *data);
 size_t	get_current_time(void);
