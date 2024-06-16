@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:26:03 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/16 16:58:14 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/16 22:36:35 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,11 @@ void init_philos(t_data *data,t_philo *philos, pthread_mutex_t *forks,
 void init_data_forks(t_data *data, t_philo *philo,pthread_mutex_t *forks, int philo_num);
 // void destroy_mutex(char *str,t_data *data);
 int start_threads(t_data *data, pthread_mutex_t *forks);
-size_t	get_current_time(void);
+size_t	current_time(void);
 // void think(t_philo *philo);
-void sleeping(t_philo *philo);
+void sleep2think(t_philo *philo);
 void eat(t_philo *philo);
-void	think(t_philo *philo);
-int	ft_usleep(size_t milliseconds);
+int	my_usleep(size_t milliseconds);
 void	print_message(char *str, t_philo *philo, int id);
 void destroy_mutex(char *message, t_data *data, pthread_mutex_t *forks);
 #endif

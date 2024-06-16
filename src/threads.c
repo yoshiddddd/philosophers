@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 16:14:57 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/16 20:05:20 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/16 22:36:35 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int judge_dead(t_philo *philo, size_t time_die)
 {
         pthread_mutex_lock(philo->meal_lock);
-    if(get_current_time() - philo->last_eat >= time_die && philo->eating == 0)
+    if(current_time() - philo->last_eat >= time_die && philo->eating == 0)
     {
         pthread_mutex_unlock(philo->meal_lock);
         return 1;
@@ -45,7 +45,32 @@ int check_dead(t_philo *philos)
     return 0;
 
 }
+int check_ate(t_philo *philos)
+{
+    int i;
+    int finished;
 
+    i = 0;
+    finished = 0;
+    if(philos[0].meals_n == -1)
+        return 0;
+    while(i < philos[0].data->philo_num)
+    {
+        pthread_mutex_lock(philos[i].meal_lock);
+        if(philos[i].eat_num>= philos[i].meals_n)
+            finished++;
+        pthread_mutex_unlock(philos[i].meal_lock);
+        i++;
+    }
+    if(finished == philos[0].data->philo_num)
+    {
+        pthread_mutex_lock(philos[0].dead_lock);
+        *philos->is_dead = 1;
+        pthread_mutex_unlock(philos[0].dead_lock);
+        return 1;
+    }
+    return 0;
+}
 
 void *observer_routine(void *p)
 {
@@ -54,17 +79,17 @@ void *observer_routine(void *p)
     philos = (t_philo *)p;
     while(1)
     {
-        if(check_dead(philos) == 1)
+        if(check_dead(philos) == 1 ||check_ate(philos) == 1)
             break;
     }
     return p;
 }
-int	ft_usleep(size_t milliseconds)
+int	my_usleep(size_t milliseconds)
 {
 	size_t	start;
 
-	start = get_current_time();
-	while ((get_current_time() - start) < milliseconds)
+	start = current_time();
+	while ((current_time() - start) < milliseconds)
 		usleep(500);
 	return (0);
 }
@@ -86,7 +111,7 @@ void	print_message(char *str, t_philo *philo, int id)
 	size_t	time;
 
 	pthread_mutex_lock(philo->write);
-	time = get_current_time() - philo->start_time;
+	time = current_time() - philo->start_time;
 	if (!dead_loop(philo))
 		printf("%zu %d %s\n", time, id, str);
 	pthread_mutex_unlock(philo->write);
@@ -98,12 +123,11 @@ void *routine(void *p)
     
     philo = (t_philo *)p;
     if(philo->id%2==0)
-        ft_usleep(1);
+        my_usleep(1);
     while(!dead_loop(philo))
     {
         eat(philo);
-        sleeping(philo);
-        think(philo);
+        sleep2think(philo);
     }
     return p;
 }

@@ -6,13 +6,13 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:25:49 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/16 15:47:42 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/16 22:36:35 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-size_t	get_current_time(void)
+size_t	current_time(void)
 {
 	struct timeval	time;
 
@@ -62,8 +62,8 @@ void init_philos(t_data *data,t_philo *philos, pthread_mutex_t *forks,
         philos[i].status = 0;
         philos[i].eating = 0;
         init_args(&philos[i],argv);
-        philos[i].last_eat = get_current_time();
-        philos[i].start_time = get_current_time();
+        philos[i].last_eat = current_time();
+        philos[i].start_time = current_time();
         philos[i].write = &data->write;
         philos[i].dead_lock = &data->dead_lock;
         philos[i].meal_lock = &data->meal_lock;
