@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:25:40 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/16 14:35:16 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/16 17:00:16 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int main(int argc , char **argv)
     init_data_forks(&data,philos,forks,ft_atoi(argv[PHILO_I]));
     init_philos(&data,philos, forks, argv);
     
-    printf("philo_num: %d\n",philos->data->philo_num);
     start_threads(&data, forks);
     destroy_mutex(NULL, &data,forks);
     return 1;
