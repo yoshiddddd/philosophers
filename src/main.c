@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:25:40 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/15 11:16:38 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/16 14:35:16 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,21 @@ int check_args(char **argv, int argc)
 
     return 0;
 }
-
+void destroy_mutex(char *message, t_data *data, pthread_mutex_t *forks)
+{
+    int i;
+    i = 0;
+    while(i<data->philo_num)
+    {
+        pthread_mutex_destroy(&forks[i]);
+        i++;
+    }
+    pthread_mutex_destroy(&data->dead_lock);
+    pthread_mutex_destroy(&data->write);
+    pthread_mutex_destroy(&data->meal_lock);
+    if(message)
+    printf("%s\n",message);
+}
 
 int main(int argc , char **argv)
 {
@@ -70,9 +84,9 @@ int main(int argc , char **argv)
     init_data_forks(&data,philos,forks,ft_atoi(argv[PHILO_I]));
     init_philos(&data,philos, forks, argv);
     
-    // start_threads(philos);
-    printf("philo_num: %d\n",philos->time_sleep);
+    printf("philo_num: %d\n",philos->data->philo_num);
+    start_threads(&data, forks);
+    destroy_mutex(NULL, &data,forks);
     return 1;
-    // destroy_mutex("destroy mutex", &data);
     // pthread_create
 }

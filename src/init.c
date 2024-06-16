@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:25:49 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/15 11:15:22 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/16 15:47:42 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,26 @@ void init_philos(t_data *data,t_philo *philos, pthread_mutex_t *forks,
     int i;
 
     i = 0;
+    data->philo_num = ft_atoi(argv[PHILO_I]);
     while (i < ft_atoi(argv[PHILO_I]))
     {
-        init_args(&philos[i],argv);
         philos[i].id = i + 1;
         philos[i].eat_num = 0;
         philos[i].status = 0;
         philos[i].eating = 0;
+        init_args(&philos[i],argv);
         philos[i].last_eat = get_current_time();
         philos[i].start_time = get_current_time();
         philos[i].write = &data->write;
         philos[i].dead_lock = &data->dead_lock;
         philos[i].meal_lock = &data->meal_lock;
+        philos[i].is_dead = &data->is_dead;
         philos[i].data = data;
-        philos[i].r_fork = &data->forks[i];
-        philos[i].l_fork = &data->forks[(i + 1) % data->philo_num];
+        philos[i].l_fork = &forks[i];
+        		if (i == 0)
+			philos[i].r_fork = &forks[data->philo_num - 1];
+		else
+			philos[i].r_fork = &forks[i - 1];
         
         i++;
     }

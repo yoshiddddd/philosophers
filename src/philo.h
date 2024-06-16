@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:26:03 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/15 11:00:12 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/16 15:13:33 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ typedef struct s_philo
     int             *is_dead;
 	int				meals_n;
     size_t            last_eat;
-	uint64_t		time_die;
-	uint64_t		time_eat;
-	u_int64_t		start_time;
-	uint64_t		time_sleep;
+	size_t		time_die;
+	size_t		time_eat;
+	size_t		start_time;
+	size_t		time_sleep;
     pthread_mutex_t *dead_lock;
     pthread_mutex_t	*write;
 	pthread_mutex_t	*meal_lock;
@@ -58,7 +58,7 @@ typedef struct s_data
 	uint64_t		time_die;
 	uint64_t		time_eat;
 	uint64_t		time_sleep;
-	pthread_mutex_t	*forks;
+	// pthread_mutex_t	*forks;
     pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	write;
@@ -67,10 +67,12 @@ int	ft_atoi(const char *str);
 void init_philos(t_data *data,t_philo *philos, pthread_mutex_t *forks,
 		char **argv);
 void init_data_forks(t_data *data, t_philo *philo,pthread_mutex_t *forks, int philo_num);
-void destroy_mutex(char *str,t_data *data);
-int start_threads(t_data *data);
+// void destroy_mutex(char *str,t_data *data);
+int start_threads(t_data *data, pthread_mutex_t *forks);
 size_t	get_current_time(void);
-void think(t_philo *philo);
-void sleep_now(t_philo *philo);
+// void think(t_philo *philo);
+void sleeping(t_philo *philo);
 void eat(t_philo *philo);
+int	ft_usleep(size_t milliseconds);
+void destroy_mutex(char *message, t_data *data, pthread_mutex_t *forks);
 #endif
