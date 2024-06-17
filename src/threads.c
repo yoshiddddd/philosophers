@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 16:14:57 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/16 22:36:35 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/16 23:59:52 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	my_usleep(size_t milliseconds)
 	return (0);
 }
 
-int dead_loop(t_philo *philo)
+int dead_judge(t_philo *philo)
 {
     // if(philo->dead_lock == NULL)
         // return (printf("hogehoge\n"),1);
@@ -112,7 +112,7 @@ void	print_message(char *str, t_philo *philo, int id)
 
 	pthread_mutex_lock(philo->write);
 	time = current_time() - philo->start_time;
-	if (!dead_loop(philo))
+	if (!dead_judge(philo))
 		printf("%zu %d %s\n", time, id, str);
 	pthread_mutex_unlock(philo->write);
 }
@@ -124,7 +124,7 @@ void *routine(void *p)
     philo = (t_philo *)p;
     if(philo->id%2==0)
         my_usleep(1);
-    while(!dead_loop(philo))
+    while(!dead_judge(philo))
     {
         eat(philo);
         sleep2think(philo);
