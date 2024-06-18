@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:26:03 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/16 22:36:35 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/18 13:06:43 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,20 @@ typedef struct s_data
 int	ft_atoi(const char *str);
 void init_philos(t_data *data,t_philo *philos, pthread_mutex_t *forks,
 		char **argv);
+size_t	current_time(void);
 void init_data_forks(t_data *data, t_philo *philo,pthread_mutex_t *forks, int philo_num);
 // void destroy_mutex(char *str,t_data *data);
 int start_threads(t_data *data, pthread_mutex_t *forks);
-size_t	current_time(void);
 // void think(t_philo *philo);
 void sleep2think(t_philo *philo);
 void eat(t_philo *philo);
 int	my_usleep(size_t milliseconds);
-void	print_message(char *str, t_philo *philo, int id);
+void	write_msg(char *str, t_philo *philo, int id);
+void *routine(void *p);
 void destroy_mutex(char *message, t_data *data, pthread_mutex_t *forks);
+int dead_judge(t_philo *philo);
+void *observer_routine(void *p);
+int check_args(char **argv, int argc);
+int error_msg(char *message);
+
 #endif

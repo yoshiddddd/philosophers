@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:25:49 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/16 22:36:35 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/18 12:54:42 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void init_philos(t_data *data,t_philo *philos, pthread_mutex_t *forks,
         philos[i].is_dead = &data->is_dead;
         philos[i].data = data;
         philos[i].l_fork = &forks[i];
-        		if (i == 0)
+        if (i == 0)
 			philos[i].r_fork = &forks[data->philo_num - 1];
 		else
 			philos[i].r_fork = &forks[i - 1];
