@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:25:40 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/18 13:02:02 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/18 15:13:20 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 int main(int argc , char **argv)
 {
     t_data data;
-    t_philo philos[200];
-    pthread_mutex_t	forks[200];
+    t_philo philos[MAX_PHILO_NUM];
+    pthread_mutex_t	forks[MAX_PHILO_NUM];
     // char err_msg;
     if(argc!=5 && argc!=6)
         return  error_msg("args");

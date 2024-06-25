@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:26:03 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/18 13:06:43 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/18 17:55:03 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_philo
 	pthread_t		t1;
 	int				id;
 	int				eat_num;
-	int				status;
 	int				eating;
     int             *is_dead;
 	int				meals_n;

@@ -6,7 +6,7 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:25:49 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/18 12:54:42 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/18 17:55:07 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void init_philos(t_data *data,t_philo *philos, pthread_mutex_t *forks,
     {
         philos[i].id = i + 1;
         philos[i].eat_num = 0;
-        philos[i].status = 0;
         philos[i].eating = 0;
         init_args(&philos[i],argv);
         philos[i].last_eat = current_time();
@@ -74,7 +73,6 @@ void init_philos(t_data *data,t_philo *philos, pthread_mutex_t *forks,
 			philos[i].r_fork = &forks[data->philo_num - 1];
 		else
 			philos[i].r_fork = &forks[i - 1];
-        
         i++;
     }
 
