@@ -6,14 +6,17 @@
 /*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:25:40 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/18 15:13:20 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/29 10:18:03 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 
-
+__attribute__((destructor))
+static void destructor() {
+    system("leaks -q philo");
+}
 
 int main(int argc , char **argv)
 {
