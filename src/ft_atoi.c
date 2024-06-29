@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
+/*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:14:50 by kyoshida          #+#    #+#             */
-/*   Updated: 2024/04/03 19:44:21 by yoshidakazu      ###   ########.fr       */
+/*   Updated: 2024/06/25 17:50:45 by kyoshida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

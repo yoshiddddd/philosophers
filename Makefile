@@ -3,42 +3,33 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+         #
+#    By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/28 13:10:54 by yoshidakazu       #+#    #+#              #
-#    Updated: 2024/06/18 13:08:33 by yoshidakazu      ###   ########.fr        #
+#    Updated: 2024/06/29 16:37:19 by kyoshida         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
 NAME = philo
-
-SRC = main.c routine.c init.c threads.c ft_atoi.c check.c utils.c message.c observer.c
-
-MANPATH = $(addprefix ./src/, $(SRC))
-
-FLAGS = -O3 -pthread -fsanitize=address
-
-# -Wall -Wextra -Werror 
-
-
-
-
-HEADER = ./src/philo.h
-
-# SANITIZER = -fsanitize=thread
-
-.PHONY: all clean fclean re debug
+CC = cc
+SRC = src/main.c src/routine.c src/init.c src/threads.c src/ft_atoi.c src/check.c src/utils.c src/message.c src/observer.c
+OBJ = $(SRC:.c=.o)
+FLAGS = -Wall -Wextra -Werror -pthread -g
 
 all: $(NAME)
 
-$(NAME): $(MANPATH) $(HEADER)
-	@cc $(FLAGS) -o $(NAME) $(MANPATH) $(SANITIZER)
+$(NAME): $(OBJ)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJ)
+
+%.o: %.c
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(NAME)
+	rm -f $(OBJ)
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
