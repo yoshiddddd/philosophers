@@ -6,7 +6,7 @@
 #    By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/28 13:10:54 by yoshidakazu       #+#    #+#              #
-#    Updated: 2024/06/29 18:00:16 by yoshidakazu      ###   ########.fr        #
+#    Updated: 2024/06/30 13:35:53 by yoshidakazu      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 CC = cc
 SRC = main.c routine.c init.c threads.c ft_atoi.c check.c utils.c message.c observer.c
 OBJ = $(SRC:.c=.o)
-FLAGS = -Wall -Wextra -Werror -pthread -g
+FLAGS = -Wall -Wextra -Werror 
 
 all: $(NAME)
 
