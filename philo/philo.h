@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyoshida <kyoshida@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoshidakazushi <yoshidakazushi@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:26:03 by yoshidakazu       #+#    #+#             */
-/*   Updated: 2024/06/25 17:53:55 by kyoshida         ###   ########.fr       */
+/*   Updated: 2024/07/04 10:16:52 by yoshidakazu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define EAT_I 3
 # define SLEEP_I 4
 # define MUST_EAT_I 5
-# define MAX_PHILO_NUM 200
+# define MAX_PHILO_NUM 1000
 
 typedef struct s_philo
 {
